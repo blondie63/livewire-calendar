@@ -61,7 +61,7 @@ class LivewireCalendarServiceProvider extends ServiceProvider
 
                     const eventId = event.dataTransfer.getData('id');
 
-                    window.Livewire.find(componentId).call('onEventDropped', eventId, year, month, day);
+                    window.Livewire.find(componentId).onEventDropped(eventId, year, month, day);
                 }
             </script>
 HTML;

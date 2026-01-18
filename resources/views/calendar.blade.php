@@ -1,4 +1,5 @@
 <div
+    id="{{ $this->getId() }}"
     @if($pollMillis !== null && $pollAction !== null)
         wire:poll.{{ $pollMillis }}ms="{{ $pollAction }}"
     @elseif($pollMillis !== null)
@@ -23,7 +24,7 @@
                     <div class="w-full flex flex-row">
                         @foreach($week as $day)
                             @include($dayView, [
-                                    'componentId' => $componentId,
+                                    'componentId' => $this->getId(),
                                     'day' => $day,
                                     'dayInMonth' => $day->isSameMonth($startsAt),
                                     'isToday' => $day->isToday(),

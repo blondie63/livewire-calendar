@@ -60,10 +60,10 @@ class LivewireCalendar extends Component
     public $eventClickEnabled;
 
     protected $casts = [
-        'startsAt' => 'date',
-        'endsAt' => 'date',
-        'gridStartsAt' => 'date',
-        'gridEndsAt' => 'date',
+        'startsAt' => 'datetime',
+        'endsAt' => 'datetime',
+        'gridStartsAt' => 'datetime',
+        'gridEndsAt' => 'datetime',
     ];
 
     public function mount($initialYear = null,
@@ -226,29 +226,12 @@ class LivewireCalendar extends Component
         //
     }
 
-    public function getId()
-    {
-        if (!empty($this->__id)) {
-            $id = $this->__id;
-        } else if (!empty($this->id)) {
-            $id = $this->id;
-        } else {
-            $id = 'livewire-calendar-' . uniqid();
-        }
-        return $id;
-    }
-
-    /**
-     * @return Factory|View
-     * @throws Exception
-     */
     public function render()
     {
         $events = $this->events();
 
         return view($this->calendarView)
             ->with([
-                'componentId' => $this->getId(),
                 'monthGrid' => $this->monthGrid(),
                 'events' => $events,
                 'getEventsForDay' => function ($day) use ($events) {
